@@ -5,17 +5,52 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
   phone: {
     type: String,
     required: true,
   },
-  date: {
+  appointmentDate: {
     type: Date,
     required: true,
   },
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other'],
+    required: true,
+  },
+  address: {
+    street1: {
+      type: String,
+      required: true,
+    },
+    street2: {
+      type: String,
+      default: '',
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    region: {
+      type: String,
+      required: true,
+    },
+    postalCode: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+  },
   note: {
     type: String,
-    default: '', // Initial default value for notes
+    default: '',
   },
 });
 

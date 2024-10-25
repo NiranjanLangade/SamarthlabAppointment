@@ -48,7 +48,6 @@ const AdminDashboard = () => {
     <div className="dashboard-container">
       <h1>All Appointments</h1>
 
-
       <label>Select Date: </label>
       <input
         type="date"
@@ -61,7 +60,7 @@ const AdminDashboard = () => {
         {appointments.map((appointment) => (
           <div key={appointment._id} className="appointment-card">
             <div className="appointment-details">
-              <span>{appointment.name} - {appointment.phone} - {new Date(appointment.date).toLocaleDateString()}</span>
+              <span>{appointment.name} - {appointment.phone} - {format(new Date(appointment.appointmentDate), 'yyyy-MM-dd')}</span>
             </div>
             <button onClick={() => handleViewNote(appointment._id)}>View Note</button>
           </div>
@@ -69,7 +68,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Notes Section */}
-      {selectedNote && (
+      {selectedAppointment && (
         <div className="note-section">
           <h2>Note for Appointment</h2>
           <p>{selectedNote}</p>

@@ -6,23 +6,35 @@ const twilio = require('twilio');
 const client = new twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 router.post('/book', async (req, res) => {
-  const { name, phone, date } = req.body;
+    const { name, email, phone, birthDate, gender, address, appointmentDate } = req.body;
 
-  try {
-    const newAppointment = new Appointment({ name, phone, date });
-    await newAppointment.save();
+    try {
+      // Create a new appointment with all required fields
+      const newAppointment = new Appointment({
+        name,
+        email,
+        phone,
+        birthDate,
+        gender,
+        address,
+        appointmentDate // Make sure this is included
+      });
 
-    client.messages.create({
-      body: `New appointment booked by ${name} Mob.no : ${phone} for ${date}`,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: '+919561350845',
-    });
+      await newAppointment.save();
 
-    res.status(201).json({ message: 'Appointment booked successfully!' });
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to book the appointment' });
-  }
-});
+      // Send SMS notification
+      client.messages.create({
+        body: `New appointment booked by ${name}, Mob.no: ${phone}, Appointment Date: ${appointmentDate}`,
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: '+919561350845',
+      });
+
+      res.status(201).json({ message: 'Appointment booked successfully!' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to book the appointment' });
+    }
+  });
 
 
 router.get('/', async (req, res) => {
@@ -36,7 +48,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch appointments' });
   }
 });
-
 
 router.post('/:id/note', async (req, res) => {
   const { id } = req.params;
