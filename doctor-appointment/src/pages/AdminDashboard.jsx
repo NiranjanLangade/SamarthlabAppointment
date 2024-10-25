@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
-import "./Admin.css"; // Ensure CSS file has the necessary styles
+import "./Admin.css";
 
 const AdminDashboard = () => {
   const [appointments, setAppointments] = useState([]);
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
     <div className="dashboard-container">
       <h1>All Appointments</h1>
 
-      {/* Date Picker */}
+
       <label>Select Date: </label>
       <input
         type="date"

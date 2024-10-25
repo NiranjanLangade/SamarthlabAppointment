@@ -1,7 +1,6 @@
-/* AdminDashboard.css */
 .dashboard-container {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f4f8; /* light grey-blue background */
+    background-color: #f0f4f8;
     color: #333;
     padding: 20px;
     width: 100vw;
@@ -9,24 +8,24 @@
     box-sizing: border-box;
   }
 
-  h1 {
-    color: #357ABD; /* dark blue */
+  .dashboard-container h1 {
+    color: #357ABD;
     text-align: center;
     margin-bottom: 20px;
   }
 
-  label {
+  .dashboard-container label {
     font-size: 16px;
-    color: #357ABD; /* dark blue */
+    color: #357ABD;
   }
 
-  input[type='date'] {
+  .dashboard-container input[type='date'] {
     padding: 8px;
     margin-bottom: 20px;
     border: 1px solid #4a90e2;
     border-radius: 4px;
-    background-color: #e8f0fe; /* light blue */
-    color: #000; /* black text */
+    background-color: #e8f0fe;
+    color: #000;
   }
 
   .appointment-cards-container {
@@ -36,8 +35,8 @@
   }
 
   .appointment-card {
-    background-color: #e8f0fe; /* light blue */
-    border: 1px solid #4a90e2; /* medium blue */
+    background-color: #e8f0fe;
+    border: 1px solid #4a90e2;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -49,16 +48,16 @@
   }
 
   .appointment-card:hover {
-    transform: translateY(-5px); /* hover effect */
+    transform: translateY(-5px);
   }
 
   .appointment-details {
     font-size: 16px;
-    color: #357ABD; /* dark blue */
+    color: #357ABD;
   }
 
   .appointment-card button {
-    background-color: #4a90e2; /* medium blue */
+    background-color: #4a90e2;
     color: white;
     border: none;
     padding: 8px 16px;

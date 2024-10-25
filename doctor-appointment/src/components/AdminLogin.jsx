@@ -1,7 +1,7 @@
 import  { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LoginPage.css'; // Refer to new styles
+import './LoginPage.css';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const AdminLogin = () => {
         password,
       });
       if (response.data.loggedIn) {
-        navigate('/appointments'); // Redirect to admin dashboard
+        navigate('/appointments');
       } else {
         setError('Invalid credentials');
       }
@@ -40,7 +40,7 @@ const AdminLogin = () => {
             <h2>Welcome to Samarth Labs</h2>
             <form onSubmit={handleLogin}>
               <div className="input-group">
-                <label htmlFor="username">Username or Email</label>
+                <label htmlFor="username">Username</label>
                 <input
                   type="text"
                   id="username"
@@ -64,9 +64,6 @@ const AdminLogin = () => {
               <button type="submit" className="login-button">Login</button>
             </form>
             {error && <p className="error-message">{error}</p>}
-            {/* <div className="forgot-password">
-              <a href="/forgot-password">Forgot Password?</a>
-            </div> */}
           </div>
         </div>
       </div>

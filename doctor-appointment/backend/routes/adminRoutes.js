@@ -1,4 +1,4 @@
-// backend/routes/adminRoutes.js
+
 const express = require('express');
 const router = express.Router();
 
@@ -7,7 +7,7 @@ const adminCredentials = {
   password: 'password123',
 };
 
-// POST: Admin login
+
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
 

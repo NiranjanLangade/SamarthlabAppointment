@@ -3,10 +3,8 @@ const router = express.Router();
 const Appointment = require('../models/Appointment');
 const twilio = require('twilio');
 
-// Initialize Twilio client
 const client = new twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
-// POST: Book an appointment
 router.post('/book', async (req, res) => {
   const { name, phone, date } = req.body;
 
@@ -15,9 +13,9 @@ router.post('/book', async (req, res) => {
     await newAppointment.save();
 
     client.messages.create({
-      body: `New appointment booked by ${name} for ${date}`,
+      body: `New appointment booked by ${name} Mob.no : ${phone} for ${date}`,
       from: process.env.TWILIO_PHONE_NUMBER,
-      to: '+919561350845', // Replace with doctor's phone number
+      to: '+919561350845',
     });
 
     res.status(201).json({ message: 'Appointment booked successfully!' });
@@ -26,7 +24,7 @@ router.post('/book', async (req, res) => {
   }
 });
 
-// GET: Fetch all appointments or fetch appointments for a specific date
+
 router.get('/', async (req, res) => {
   const { date } = req.query;
 
@@ -39,7 +37,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST: Save or update a note for a specific appointment
+
 router.post('/:id/note', async (req, res) => {
   const { id } = req.params;
   const { note } = req.body;
@@ -61,7 +59,6 @@ router.post('/:id/note', async (req, res) => {
   }
 });
 
-// GET: Fetch the note for a specific appointment
 router.get('/:id/note', async (req, res) => {
   const { id } = req.params;
 

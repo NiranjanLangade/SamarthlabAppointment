@@ -1,4 +1,3 @@
-// src/components/AppointmentForm.jsx
 import  { useState } from 'react';
 import axios from 'axios';
 
@@ -18,7 +17,6 @@ const AppointmentForm = () => {
         date,
       });
       setMessage(response.data.message);
-      // Reset form fields
       setName('');
       setPhone('');
       setDate('');
