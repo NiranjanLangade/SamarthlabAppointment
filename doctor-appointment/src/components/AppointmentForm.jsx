@@ -6,7 +6,7 @@ const AppointmentForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [appointmentDate, setappointmentDate] = useState('');
+  const [appointmentDate, setAppointmentDate] = useState('');
   const [gender, setGender] = useState('male');
   const [address, setAddress] = useState({
     street1: '',
@@ -14,7 +14,7 @@ const AppointmentForm = () => {
     city: '',
     region: '',
     postalCode: '',
-    country: '',
+    country: 'India', // Set default country to India
   });
   const [message, setMessage] = useState('');
 
@@ -31,28 +31,32 @@ const AppointmentForm = () => {
         address,
       });
       setMessage(response.data.message || 'Form submitted successfully');
-      setName('');
-      setEmail('');
-      setPhone('');
-      setappointmentDate('');
-      setGender('male');
-      setAddress({
-        street1: '',
-        street2: '',
-        city: '',
-        region: '',
-        postalCode: '',
-        country: '',
-      });
+      resetForm();
     } catch (error) {
       console.error(error);
-      setMessage('Failed to submit the form');
+      setMessage('Failed to submit the form. Please try again.');
     }
+  };
+
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setPhone('');
+    setAppointmentDate('');
+    setGender('male');
+    setAddress({
+      street1: '',
+      street2: '',
+      city: '',
+      region: '',
+      postalCode: '',
+      country: 'India', // Reset country to default
+    });
   };
 
   return (
     <section className="container">
-      <header>Registration Form</header>
+      <header>Appointment Registration Form</header>
       <form onSubmit={handleSubmit} className="form">
         <div className="input-box">
           <label>
@@ -100,7 +104,7 @@ const AppointmentForm = () => {
             <input
               type="date"
               value={appointmentDate}
-              onChange={(e) => setappointmentDate(e.target.value)}
+              onChange={(e) => setAppointmentDate(e.target.value)}
               required
             />
           </div>
@@ -151,13 +155,14 @@ const AppointmentForm = () => {
             type="text"
             value={address.street1}
             onChange={(e) => setAddress({ ...address, street1: e.target.value })}
-            placeholder="Enter street address"
+            placeholder="Street address (required)"
+            required
           />
           <input
             type="text"
             value={address.street2}
             onChange={(e) => setAddress({ ...address, street2: e.target.value })}
-            placeholder="Enter street address line 2"
+            placeholder="Street address line 2 (optional)"
           />
           <div className="column">
             <div className="select-box">
@@ -165,11 +170,10 @@ const AppointmentForm = () => {
                 value={address.country}
                 onChange={(e) => setAddress({ ...address, country: e.target.value })}
               >
-                <option defaultValue={"India"}>Select Country</option>
-                <option>India</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>Nepal</option>
+                <option value="India">India</option>
+                <option value="America">America</option>
+                <option value="Japan">Japan</option>
+                <option value="Nepal">Nepal</option>
               </select>
             </div>
             <input
@@ -177,6 +181,7 @@ const AppointmentForm = () => {
               value={address.city}
               onChange={(e) => setAddress({ ...address, city: e.target.value })}
               placeholder="Enter your city"
+              required
             />
           </div>
           <div className="column">
@@ -185,12 +190,14 @@ const AppointmentForm = () => {
               value={address.region}
               onChange={(e) => setAddress({ ...address, region: e.target.value })}
               placeholder="Enter your region"
+              required
             />
             <input
-              type="number"
+              type="text"
               value={address.postalCode}
               onChange={(e) => setAddress({ ...address, postalCode: e.target.value })}
               placeholder="Enter postal code"
+              required
             />
           </div>
         </div>

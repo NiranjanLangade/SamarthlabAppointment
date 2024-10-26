@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
-import "./Admin.css";
+import './Admin.css';
 
 const AdminDashboard = () => {
   const [appointments, setAppointments] = useState([]);
@@ -16,7 +16,7 @@ const AdminDashboard = () => {
         const response = await axios.get(`http://localhost:5000/api/appointments?date=${selectedDate}`);
         setAppointments(response.data);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching appointments:', error);
       }
     };
 
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
       setSelectedNote(response.data.note || 'No note available.');
       setSelectedAppointment(appointmentId);
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching note:', error);
     }
   };
 
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
       setEditNote('');
       alert('Note saved successfully.');
     } catch (error) {
-      console.error(error);
+      console.error('Error saving note:', error);
     }
   };
 
